@@ -1,8 +1,8 @@
 {
   "infoChannelId": false,
-  "lineupChannelId": "1449307611462897787",
-  "liveChannelId": "1450374864878833816",
-  "mvpChannelId": "1449307802639142943",
+  "lineupChannelId": false,
+  "liveChannelId": false,
+  "mvpChannelId": false,
   "calendarChannelId": false,
   "fixtureId": null,
   "lineupSent": false,
