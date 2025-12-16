@@ -1,7 +1,7 @@
 const config = {
   discordToken: process.env.DISCORD_TOKEN,
   apiKey: process.env.API_KEY,
-  santosTeamId: 123,
+  santosTeamId: 128,
   timezone: "America/Sao_Paulo",
 };
 
