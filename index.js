@@ -348,3 +348,10 @@ client.on(Events.InteractionCreate, async (interaction) => {
 });
 
 client.login(config.discordToken);
+
+const PORT = process.env.PORT || 3000;
+
+require("http").createServer((req, res) => {
+  if (req.url === "/healthz") res.end("ok");  // endpoint para health check
+  else res.end("Bot online");
+}).listen(PORT, () => console.log(`Server listening on port ${PORT}`));
