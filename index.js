@@ -1,21 +1,5 @@
 require("dotenv").config();
 
-const http = require("http");
-
-const PORT = process.env.PORT || 10000;
-
-http.createServer((req, res) => {
-  if (req.url === "/healthz") {
-    res.writeHead(200);
-    res.end("ok");
-  } else {
-    res.writeHead(200);
-    res.end("Santos Bot rodando");
-  }
-}).listen(PORT, () => {
-  console.log(`🌐 Health server listening on ${PORT}`);
-});
-
 const {
   Client,
   GatewayIntentBits,
