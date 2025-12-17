@@ -18,7 +18,7 @@ const {
   getSeasonFixtures,
 } = require("./services/football");
 
-const config = require("./config.json");
+const config = require("./config.js");
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
