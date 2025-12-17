@@ -1,5 +1,21 @@
 require("dotenv").config();
 
+const http = require("http");
+
+const PORT = process.env.PORT || 10000;
+
+http.createServer((req, res) => {
+  if (req.url === "/healthz") {
+    res.writeHead(200);
+    res.end("ok");
+  } else {
+    res.writeHead(200);
+    res.end("Santos Bot rodando");
+  }
+}).listen(PORT, () => {
+  console.log(`🌐 Health server listening on ${PORT}`);
+});
+
 const {
   Client,
   GatewayIntentBits,
@@ -21,11 +37,16 @@ const {
 const config = require("./config.js");
 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMembers],
 });
 
 // BANCO SIMPLES (JSON)
-let db = JSON.parse(fs.readFileSync("./db.json"));
+let db = {};
+try {
+  db = JSON.parse(fs.readFileSync("./db.json"));
+} catch {
+  db = {};
+}
 
 function saveDB() {
   fs.writeFileSync("./db.json", JSON.stringify(db, null, 2));
@@ -348,10 +369,3 @@ client.on(Events.InteractionCreate, async (interaction) => {
 });
 
 client.login(config.discordToken);
-
-const PORT = process.env.PORT || 3000;
-
-require("http").createServer((req, res) => {
-  if (req.url === "/healthz") res.end("ok");  // endpoint para health check
-  else res.end("Bot online");
-}).listen(PORT, () => console.log(`Server listening on port ${PORT}`));
